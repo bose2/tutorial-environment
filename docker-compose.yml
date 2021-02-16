@@ -44,7 +44,7 @@ services:
   app:
     build: ./app
     ports:
-      - 8081:80
+      - 8083:80
     volumes:
       - app_data:/var/log
     networks:

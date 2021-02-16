@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  grafana_trial:
+  grafana:
 
 volumes:
   app_data: {}
@@ -17,7 +17,7 @@ services:
     ports:
       - 9090:9090
     networks:
-      - grafana_trial
+      - grafana
 
   loki:
     image: grafana/loki:1.6.1
@@ -25,34 +25,34 @@ services:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
     networks:
-      - grafana_trial
+      - grafana
 
   promtail:
     image: grafana/promtail:1.6.1
     volumes:
       - app_data:/var/log
     networks:
-      - grafana_trial
+      - grafana
 
   grafana:
     image: grafana/grafana:7.3.6
     ports:
-      - 3001:3000
+      - 3000:3000
     networks:
-      - grafana_trial
+      - grafana
 
   app:
     build: ./app
     ports:
-      - 8083:80
+      - 8081:80
     volumes:
       - app_data:/var/log
     networks:
-      - grafana_trial
+      - grafana
 
   db:
     image: grafana/tns-db:latest
     ports:
       - 8082:80
     networks:
-      - grafana_trial
+      - grafana

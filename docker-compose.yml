@@ -4,7 +4,7 @@ networks:
   grafana:
 
 volumes:
-  /home/ubuntu/dockerfiles/grafana_trial/tutorial-environment/data: {}
+  app_data: {}
 
 services:
   prometheus:
